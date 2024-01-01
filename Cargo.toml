@@ -1,0 +1,12 @@
+[package]
+name = "crackme"
+version = "0.1.0"
+edition = "2021"
+default-run = "crackme"
+
+[profile.release]
+opt-level = "z"
+debug = "none"
+
+[dependencies]
+winapi = {version = "0.3.9", features = ["memoryapi", "sysinfoapi", "impl-default"] }

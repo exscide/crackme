@@ -1,0 +1,15 @@
+
+[tasks.build]
+dependencies = ["assemble"]
+
+[tasks.assemble]
+run_task = { name = ["nasm", "encode-asm"] }
+
+[tasks.nasm]
+command = "nasm"
+args = ["-f", "bin", "src/y.nasm", "-o", "target/ext"]
+
+[tasks.encode-asm]
+command = "cargo"
+args = ["run", "--bin", "file_converter", "target/ext", "target/ext-enc"]
+
