@@ -45,6 +45,7 @@ fn main() {
 	};
 
 	let mut _test = 0u8;
+	//let mut res = 0u64;
 
 	unsafe {
 		asm!(
@@ -60,9 +61,11 @@ fn main() {
 
 			// continue
 			"2:",
-			"mov {test},r10b",
+			"mov {test}, r10b",
+			//"mov {res}, rax",
 			ext = in(reg) ext as u64,
 			test = out(reg_byte) _test,
+			//res = out(reg) res,
 			input = in(reg) input.as_ptr() as u64
 		);
 	}
@@ -73,7 +76,7 @@ fn main() {
 		decode_print(WRONG);
 	}
 
-	println!("");
+	//println!("\n{:016x}", res);
 
 	unsafe {
 		VirtualFree(ext, 0, MEM_RELEASE);

@@ -7,6 +7,9 @@ default-run = "crackme"
 [profile.release]
 opt-level = "z"
 debug = "none"
+lto = "fat"
+codegen-units = 1
+panic = "abort"
 
 [dependencies]
 winapi = {version = "0.3.9", features = ["memoryapi", "sysinfoapi", "impl-default"] }

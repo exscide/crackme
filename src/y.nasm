@@ -14,7 +14,7 @@ mov rax,0	; result
 	xor al, 0b11100110
 	ror al, 4
 
-	ror rax, 8
+	rol rax, 8
 
 	add r8, 1     ; increment the pointer
 
@@ -22,10 +22,10 @@ mov rax,0	; result
 
 .end:
 ; store pw in r9
-mov r9d, 0xf978186c
+mov r9d, 0xf95d496c
 xor r9d, -1
 rol r9, 32
-mov r10d, 0x49390000
+mov r10d, 0x186af900
 xor r10d, -1
 add r9, r10
 xor r9, -1
