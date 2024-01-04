@@ -5,11 +5,12 @@ edition = "2021"
 default-run = "crackme"
 
 [profile.release]
+panic = "abort"
 opt-level = "z"
 debug = "none"
 lto = "fat"
 codegen-units = 1
-panic = "abort"
+strip = "debuginfo"
 
 [dependencies]
 winapi = {version = "0.3.9", features = ["memoryapi", "sysinfoapi", "impl-default"] }

@@ -4,9 +4,9 @@ use std::arch::asm;
 use std::ffi::CString;
 
 use winapi::shared::minwindef::LPVOID;
-use winapi::um::memoryapi::{VirtualFree, VirtualProtect};
-use winapi::um::sysinfoapi::{GetSystemInfo, SYSTEM_INFO};
-use winapi::um::winnt::{MEM_COMMIT, MEM_RELEASE, PAGE_EXECUTE_READ, PAGE_READWRITE};
+use winapi::um::memoryapi::{ VirtualFree, VirtualProtect };
+use winapi::um::sysinfoapi::{ GetSystemInfo, SYSTEM_INFO };
+use winapi::um::winnt::{ MEM_COMMIT, MEM_RELEASE, PAGE_EXECUTE_READ, PAGE_READWRITE };
 
 const TYPE_PW: &[u8] = "\u{19}\u{8}\u{1a}\u{1a}\u{1e}\u{6}\u{1b}\rSI".as_bytes();
 const CORRECT: &[u8] = "\n\u{6}\u{1b}\u{1b}\u{c}\n\u{1d}".as_bytes();
@@ -62,10 +62,8 @@ fn main() {
 			// continue
 			"2:",
 			"mov {test}, r10b",
-			//"mov {res}, rax",
 			ext = in(reg) ext as u64,
 			test = out(reg_byte) _test,
-			//res = out(reg) res,
 			input = in(reg) input.as_ptr() as u64
 		);
 	}
@@ -75,8 +73,6 @@ fn main() {
 	} else {
 		decode_print(WRONG);
 	}
-
-	//println!("\n{:016x}", res);
 
 	unsafe {
 		VirtualFree(ext, 0, MEM_RELEASE);
