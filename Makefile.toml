@@ -14,7 +14,13 @@ args = [
 dependencies = ["assemble"]
 
 [tasks.assemble]
-run_task = { name = ["nasm", "encode-asm"] }
+run_task = { name = ["create_target", "nasm", "encode-asm"] }
+
+[tasks.create_target]
+script_runner = "@duckscript"
+script = '''
+mkdir ./target
+'''
 
 [tasks.nasm]
 command = "nasm"
